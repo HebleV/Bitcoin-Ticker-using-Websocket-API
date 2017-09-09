@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    padding-top: 100px;
+}
+
+.container {
+
+    
+    padding: 50px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#ask,
+#last,
+#bid {
+    font-size: 18px;
+    font-family: arial, helvetica;
+    font-weight: bold;
+    color: white;
+    border: 1px solid dodgerblue;
+    width: 300px;
+    height: 100px;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: #212121;
+}
+
+
+.one {
+    padding-top: 30px;
+    padding-left: 270px;
+}
+
+.bit {
+    color: #00e676;
+}
