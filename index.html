@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bitcoin Ticker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="col s12">
+                <h5>Welcome to <span class="bit">BITCOIN TICKER</span><h5>
+            <div class="one">
+                <div id="ask">
+                </div>
+                <div id="last">
+                </div>
+                <div id="bid">
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+var ws = new WebSocket("wss://api.bitfinex.com/ws");
+ws.onopen = function() {
+    ws.send(JSON.stringify({
+        "event": "subscribe",
+        "channel": "ticker",
+        "pair": "BTCUSD"
+    }));
+};
+
+ws.onmessage = function(msg) {
+    var response = JSON.parse(msg.data);
+    console.log(response);
+
+    var hb = response[1];
+    if (hb != "hb") {
+        document.getElementById("ask").textContent = "Asking Price : " + response[3];
+        document.getElementById("last").textContent = "Last Price : " + response[7];
+        document.getElementById("bid").textContent = "Bidding Price : " + response[1];
+    }
+};
+</script>
+
+</html>
